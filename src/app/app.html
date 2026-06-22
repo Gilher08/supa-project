@@ -18,7 +18,11 @@
           Terminer
           <mat-icon>check</mat-icon>
         </button>
-        <button matButton>
+          <button mat-button (click)="modifierTache(tache)">
+          Modifier
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button matButton (click)="supprimerTache(tache)">
           Supprimer
           <mat-icon>delete</mat-icon>
         </button>

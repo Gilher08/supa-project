@@ -9,39 +9,26 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-tache-dialog',
+  selector: 'app-confirmation-dialog',
   imports: [MatDialogModule, MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, MatIconModule],
-  templateUrl: './tache-dialog.html'
+  templateUrl: './confirmation-dialog.html'
 })
-export class TacheDialogComponent {
+export class ConfirmationDialogComponent {
 
-  tache: Tache = {
-    titre: '',
-    description: ''
-  };
+  message: string;
 
-  constructor(private dialogRef: MatDialogRef<TacheDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: Tache | null) {
-    this.tache = data
-      ? { ...data }
-      : {
-          titre: '',
-          description: ''
-        };
-   }
+  constructor(
+    private dialogRef: MatDialogRef<ConfirmationDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) data: { message: string }
+  ) {
+    this.message = data.message;
+  }
 
-  valider(): void {
-    if (this.tache.titre?.trim() == '') {
-      return;
-    }
-    
-    this.dialogRef.close(this.tache);
+  confirmer(): void {
+    this.dialogRef.close(true);
   }
 
   annuler(): void {
-    this.dialogRef.close();
-  }
-
-  get isEdition(): boolean {
-    return !!this.tache.id;
+    this.dialogRef.close(false);
   }
 }

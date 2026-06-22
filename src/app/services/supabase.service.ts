@@ -38,10 +38,10 @@ export class SupabaseService {
     return data as Tache[];
   }
 
-  async addTache(titre: string, description: string): Promise<Tache | null> {
+  async addTache(tache: Tache): Promise<Tache | null> {
     const { data, error } = await this.supabase
       .from('taches')
-      .insert([{ titre, description }])
+      .insert([{ titre: tache.titre, description: tache.description }])
       .select()
       .single();
 
@@ -58,7 +58,7 @@ export class SupabaseService {
       .from('taches')
       .update({
         titre: tache.titre,
-        complete: tache.description
+        description: tache.description
       })
       .eq('id', tache.id)
       .select()

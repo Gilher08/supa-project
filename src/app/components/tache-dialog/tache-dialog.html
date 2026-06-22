@@ -1,19 +1,32 @@
-<h2 mat-dialog-title>Nouvelle tâche</h2>
-
-<mat-dialog-content>
-  <mat-form-field appearance="outline" style="width: 100%;">
+<h2 mat-dialog-title>{{ isEdition ? 'Modifier tâche' : 'Ajouter tâche' }}</h2>
+<mat-dialog-content style="margin-top: 10px;">
+  <mat-form-field style="width: 100%">
     <mat-label>Titre</mat-label>
-    <input matInput [(ngModel)]="tache.titre" />
+    <input
+      matInput
+      [(ngModel)]="tache.titre"
+      maxlength="100">
   </mat-form-field>
-  <mat-form-field appearance="outline" style="width: 100%;">
+  <mat-form-field style="width: 100%">
     <mat-label>Description</mat-label>
-    <input matInput [(ngModel)]="tache.description" />
+    <textarea
+      matInput
+      rows="4"
+      [(ngModel)]="tache.description">
+    </textarea>
   </mat-form-field>
 </mat-dialog-content>
-
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Annuler</button>
-  <button mat-raised-button color="primary" (click)="valider()">
-    Ajouter
+  <button mat-button (click)="annuler()">
+    Annuler
+    <mat-icon>cancel</mat-icon>
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="valider()"
+    [disabled]="!tache.titre?.trim()">
+    {{ isEdition ? 'Enregistrer' : 'Ajouter' }}
+    <mat-icon>check</mat-icon>
   </button>
 </mat-dialog-actions>

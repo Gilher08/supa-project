@@ -1,23 +1,14 @@
 
-<router-outlet />
-<button mat-fab color="primary" class="fab" (click)="ajouterTache()">
+<!-- <router-outlet /> -->
+<button mat-fab color="warn" class="fab" (click)="ajouterTache()">
   <mat-icon>add</mat-icon>
 </button>
 <div class="cards-container">
   @for (tache of taches; track tache.id) {
     <mat-card class="tache-card">
-      <mat-card-title>{{ tache.titre }}</mat-card-title>
+      <mat-card-title (click)="consulterTache(tache)">{{ tache.titre }}</mat-card-title>
       <mat-card-subtitle>Créé le {{ tache.created_at | date:'dd/MM/yyyy' }}</mat-card-subtitle>
-      <mat-card-content>
-        <p>
-          {{ tache.description }}
-        </p>
-      </mat-card-content>
       <mat-card-actions class="action-card">
-        <button matButton>
-          Terminer
-          <mat-icon>check</mat-icon>
-        </button>
           <button mat-button (click)="modifierTache(tache)">
           Modifier
           <mat-icon>edit</mat-icon>

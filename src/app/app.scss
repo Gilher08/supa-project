@@ -11,12 +11,20 @@
     margin-left: 2%;
     margin-right: 2%;
     width: 98%;
+    background-color: #2196f3;
+    color: white;
+}
+
+.tache-card mat-card-actions button {
+  background-color: white;
+  color: #1976d2;
 }
 
 .action-card {
   display: flex;
   justify-content: center;
   gap: 12px;
+  color: white;
 }
 
 .fab {
@@ -24,6 +32,8 @@
   bottom: 24px;
   right: 24px;
   z-index: 1000;
+  background-color: #ff5252 !important;
+  color: white !important;
 }
 
 @media (max-width: 600px) {

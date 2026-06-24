@@ -1,5 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, signal } from '@angular/core';
 import { SupabaseService } from './services/supabase.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,15 +10,16 @@ import { TacheDialogComponent } from './components/tache-dialog/tache-dialog';
 import { firstValueFrom } from 'rxjs';
 import { Tache } from './models/tache';
 import { ConfirmationDialogComponent } from './components/tache-dialog/confirmation-dialog';
+import { DetailDialog } from './components/tache-dialog/detail-dialog';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatButtonModule, MatIconModule, MatToolbarModule, MatCardModule, CommonModule],
+  imports: [MatButtonModule, MatIconModule, MatToolbarModule, MatCardModule, CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class App implements OnInit {
-
+ changeDetection: ChangeDetectionStrategy.OnPush | undefined
   taches: Tache[] = [];
 
   protected readonly title = signal('supa-todo');
@@ -51,9 +51,7 @@ export class App implements OnInit {
 
     const tacheAjoutee = await this.supabaseService.addTache(nouvelleTache);
 
-    if (tacheAjoutee) {
-      this.getTaches();
-    }
+    this.getTaches();
   }
 
   async modifierTache(tache: Tache): Promise<void> {
@@ -77,10 +75,6 @@ export class App implements OnInit {
     const updated = await this.supabaseService.updateTache(
       tacheModifiee
     );
-
-    if (!updated) {
-      return;
-    }
 
     this.getTaches();
   }
@@ -110,5 +104,17 @@ export class App implements OnInit {
     );
 
     this.getTaches();
+  }
+
+  async consulterTache(tache: Tache): Promise<void> {
+    const dialogRef = this.dialog.open(
+      DetailDialog,
+      {
+        width: '400px',
+        data: {
+          message: tache.description
+        }
+      }
+    );
   }
 }

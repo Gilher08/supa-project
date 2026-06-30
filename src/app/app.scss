@@ -1,3 +1,21 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  min-height: 30px;
+  padding: 0 12px;
+  background: #1976d2;
+  color: white;
+  z-index: 1000;
+}
+.content {
+  margin-top: 30px;
+}
+.spacer {
+  flex: 1;
+}
 .cards-container {
   display: flex;
   flex-wrap: wrap;
@@ -5,7 +23,6 @@
   text-align: center;
   padding-top: 10px;
 }
-
 .tache-card {
     padding: 5px;
     margin-left: 2%;

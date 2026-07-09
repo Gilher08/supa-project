@@ -1,4 +1,65 @@
 
+<mat-sidenav-container class="container">
+  <mat-sidenav #drawer mode="over">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/home" (click)="drawer.close()">
+        <mat-icon>home</mat-icon>
+        <span style="margin-left: 20px; font-size: 20px;">Accueil</span>
+      </a>
+      <a mat-list-item routerLink="/taches" (click)="drawer.close()">
+        <mat-icon>task</mat-icon>
+        <span style="margin-left: 20px; font-size: 20px;">Mes Tâches</span>
+      </a>
+      <a mat-list-item routerLink="/parametres" (click)="drawer.close()">
+        <mat-icon>settings</mat-icon>
+        <span style="margin-left: 20px; font-size: 20px;">Paramètres</span>
+      </a>
+      <a mat-list-item (click)="drawer.close()">
+        <mat-icon>close</mat-icon>
+        <span style="margin-left: 20px; font-size: 20px;">Fermer</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="header">
+      <button
+        mat-icon-button
+        (click)="drawer.toggle()">
+        <mat-icon style="color: white">menu</mat-icon>
+      </button>
+      <span class="titre">
+        Gilher Application
+      </span>
+      <span class="spacer"></span>
+      <img src="/favicon-v2.png" alt="Logo" class="logo">
+    </mat-toolbar>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+    <!-- <div class="content">
+      <div class="cards-container">
+        @for (tache of taches; track tache.id) {
+          <mat-card class="tache-card">
+            <mat-card-title (click)="consulterTache(tache)">{{ tache.titre }}</mat-card-title>
+            <mat-card-subtitle>Créé le {{ tache.created_at | date:'dd/MM/yyyy' }}</mat-card-subtitle>
+            <mat-card-actions class="action-card">
+                <button mat-button (click)="modifierTache(tache)">
+                Modifier
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button matButton (click)="supprimerTache(tache)">
+                Supprimer
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        }
+      </div>
+    </div> -->
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<!-- 
 <mat-toolbar class="header">
 <span class="spacer"></span>
   <span>Mes tâches à la retraite</span>
@@ -27,4 +88,4 @@
 
 <button mat-fab color="warn" class="fab" (click)="ajouterTache()">
   <mat-icon>add</mat-icon>
-</button>
+</button> -->

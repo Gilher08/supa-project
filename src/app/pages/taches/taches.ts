@@ -1,31 +1,25 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, signal } from '@angular/core';
-import { SupabaseService } from './services/supabase.service';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { Tache } from '../../models/tache';
+import { SupabaseService } from '../../services/supabase.service';
 import { MatDialog } from '@angular/material/dialog';
-import { TacheDialogComponent } from './components/tache-dialog/tache-dialog';
+import { TacheDialogComponent } from '../../components/tache-dialog/tache-dialog';
 import { firstValueFrom } from 'rxjs';
-import { Tache } from './models/tache';
-import { ConfirmationDialogComponent } from './components/tache-dialog/confirmation-dialog';
-import { DetailDialog } from './components/tache-dialog/detail-dialog';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { ConfirmationDialogComponent } from '../../components/tache-dialog/confirmation-dialog';
+import { DetailDialog } from '../../components/tache-dialog/detail-dialog';
 
 @Component({
-  selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, MatButtonModule, MatIconModule, MatToolbarModule, MatCardModule, CommonModule, MatSidenavModule, MatListModule],
-  templateUrl: './app.html',
-  styleUrl: './app.scss'
+  selector: 'app-taches',
+  imports: [MatButtonModule, MatIconModule, MatCardModule, CommonModule],
+  templateUrl: './taches.html',
+  styleUrl: './taches.css',
 })
-export class App implements OnInit {
- changeDetection: ChangeDetectionStrategy.OnPush | undefined
+export class Taches implements OnInit {
+  changeDetection: ChangeDetectionStrategy.OnPush | undefined
   taches: Tache[] = [];
-
-  protected readonly title = signal('supa-todo');
 
   constructor(private supabaseService: SupabaseService, private dialog: MatDialog, private cd: ChangeDetectorRef) {}
 
@@ -38,7 +32,7 @@ export class App implements OnInit {
     this.taches = [...taches];
     this.cd.detectChanges();
   }
-
+  
   async ajouterTache() {
     const dialogRef = this.dialog.open(TacheDialogComponent, {
       width: '400px'
@@ -56,7 +50,7 @@ export class App implements OnInit {
 
     this.getTaches();
   }
-
+  
   async modifierTache(tache: Tache): Promise<void> {
 
     const dialogRef = this.dialog.open(
@@ -81,7 +75,7 @@ export class App implements OnInit {
 
     this.getTaches();
   }
-
+  
   async supprimerTache(tache: Tache): Promise<void> {
 
     const dialogRef = this.dialog.open(
@@ -108,7 +102,7 @@ export class App implements OnInit {
 
     this.getTaches();
   }
-
+  
   async consulterTache(tache: Tache): Promise<void> {
     const dialogRef = this.dialog.open(
       DetailDialog,
@@ -120,4 +114,5 @@ export class App implements OnInit {
       }
     );
   }
+  
 }

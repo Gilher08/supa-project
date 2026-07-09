@@ -3,59 +3,36 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 30px;
-  min-height: 30px;
-  padding: 0 12px;
-  background: #1976d2;
+  height: 40px;
+  min-height: 40px;
+  background: #376ea1;
   color: white;
   z-index: 1000;
 }
-.content {
-  margin-top: 30px;
+.header .mat-mdc-toolbar-row {
+  height: 40px;
+}
+.titre {
+  margin-left: 8px;
+  font-size: 14px;
 }
 .spacer {
   flex: 1;
 }
-.cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  text-align: center;
-  padding-top: 10px;
+.logo {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
 }
-.tache-card {
-    padding: 5px;
-    margin-left: 2%;
-    margin-right: 2%;
-    width: 98%;
-    background-color: #2196f3;
-    color: white;
+.content {
+  padding: 40px 16px 16px;
 }
-
-.tache-card mat-card-actions button {
-  background-color: white;
-  color: #1976d2;
+.spacer {
+  flex: 1;
 }
-
-.action-card {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  color: white;
+.container {
+  height: 100vh;
 }
-
-.fab {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 1000;
-  background-color: #ff5252 !important;
-  color: white !important;
-}
-
-@media (max-width: 600px) {
-  .fab {
-    bottom: 16px;
-    right: 16px;
-  }
+mat-sidenav {
+  width: 250px;
 }

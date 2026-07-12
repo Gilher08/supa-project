@@ -34,7 +34,7 @@
   bottom: 24px;
   right: 24px;
   z-index: 1000;
-  background-color: #ff5252 !important;
+  background-color: rgb(179, 84, 84);
   color: white !important;
 }
 

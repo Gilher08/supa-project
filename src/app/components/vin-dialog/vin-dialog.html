@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>{{ isEdition ? 'Modifier vin' : 'Ajouter vin' }}</h2>
+<mat-dialog-content style="margin-top: 10px;">
+  <mat-form-field style="width: 100%">
+    <mat-label>Titre</mat-label>
+    <input
+      matInput
+      [(ngModel)]="vin.titre"
+      maxlength="100">
+  </mat-form-field>
+  <mat-form-field style="width: 100%">
+    <mat-label>Description</mat-label>
+    <textarea
+      matInput
+      rows="4"
+      [(ngModel)]="vin.description">
+    </textarea>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="annuler()">
+    Annuler
+    <mat-icon>cancel</mat-icon>
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="valider()"
+    [disabled]="!vin.titre?.trim()">
+    {{ isEdition ? 'Enregistrer' : 'Ajouter' }}
+    <mat-icon>check</mat-icon>
+  </button>
+</mat-dialog-actions>

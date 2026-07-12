@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { Taches } from './pages/taches/taches';
 import { Parametres } from './pages/parametres/parametres';
 import { Home } from './pages/home/home';
+import { Vins } from './pages/vins/vins';
 
 export const routes: Routes = [
   {
@@ -20,5 +21,9 @@ export const routes: Routes = [
   {
     path: 'parametres',
     component: Parametres
-  }
+  },
+  {
+    path: 'vins',
+    component: Vins
+}
 ];

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from '../../environments/environment';
 import { Tache } from '../models/tache';
+import { Vin } from '../models/vin';
 
 @Injectable({
   providedIn: 'root'
@@ -100,5 +101,108 @@ export class SupabaseService {
     }
 
     return data;
+  }
+
+  async getVins(): Promise<Vin[]> {
+    const { data, error } = await this.supabase
+      .from('vins')
+      .select('*')
+      .order('titre');
+
+    if (error) {
+      console.error(error);
+      return [];
+    }
+
+    return data as Vin[];
+  }
+
+  async addVin(vin: Vin): Promise<Vin | null> {
+    const { data, error } = await this.supabase
+      .from('vins')
+      .insert([
+        {
+          titre: vin.titre,
+          description: vin.description,
+          fournisseur: vin.fournisseur,
+          annee: vin.annee,
+          prix: vin.prix,
+          photo: vin.photo
+        }
+      ])
+      .select()
+      .single();
+
+    if (error) {
+      console.error(error);
+      return null;
+    }
+
+    return data as Vin;
+  }
+
+  async updateVin(vin: Vin): Promise<Vin | null> {
+    const { data, error } = await this.supabase
+      .from('vins')
+      .update({
+        titre: vin.titre,
+        description: vin.description,
+        fournisseur: vin.fournisseur,
+        annee: vin.annee,
+        prix: vin.prix,
+        photo: vin.photo
+      })
+      .eq('id', vin.id)
+      .select()
+      .single();
+
+    if (error) {
+      console.error(error);
+      return null;
+    }
+
+    return data as Vin;
+  }
+
+  async deleteVin(id: number): Promise<boolean> {
+    const { error } = await this.supabase
+      .from('vins')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      console.error(error);
+      return false;
+    }
+
+    return true;
+  }
+
+  getPhotoUrl(path: string): string {
+    return this.supabase.storage
+      .from('photos')
+      .getPublicUrl(path)
+      .data.publicUrl;
+  }
+
+  async uploadPhoto(file: File, item: Vin): Promise<string | null> {
+
+    const fileName = `vins/${Date.now()}-${file.name}`;
+
+    const { error } = await this.supabase.storage
+        .from('photos')
+        .upload(fileName, file);
+
+    if (error) {
+        console.error(error);
+        return null;
+    }
+
+    item.photo = fileName;
+
+    await this.updateVin(item);
+
+    return fileName;
+
   }
 }

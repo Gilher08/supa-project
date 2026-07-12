@@ -1,0 +1,29 @@
+<div class="cards-container">
+@for (vin of vins; track vin.id) {
+  <mat-card class="tache-card">
+    <mat-card-title>{{ vin.titre }}</mat-card-title>
+    <mat-card-subtitle>Fournisseur : {{ vin.description }}</mat-card-subtitle>
+     <mat-card-content>
+        <img mat-card-image class="img-card" [src]="photoUrl(vin)" (click)="consulter(vin)">
+        <p>
+            {{ vin.description}}
+        </p>
+    </mat-card-content>
+    <mat-card-actions class="action-card">
+        <button matMiniFab (click)="modifier(vin)">
+            <mat-icon>edit</mat-icon>
+        </button>
+        <button matMiniFab (click)="fileInput.click()">
+          <mat-icon>photo_camera</mat-icon>
+        </button>
+        <input #fileInput type="file" accept="image/*" hidden (change)="onFileSelected($event, vin)">
+        <button matMiniFab (click)="supprimer(vin)">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </mat-card-actions>
+  </mat-card>
+}
+</div>
+<button mat-fab color="warn" class="fab" (click)="ajouter()">
+  <mat-icon>add</mat-icon>
+</button>

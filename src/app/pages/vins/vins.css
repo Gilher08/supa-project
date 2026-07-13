@@ -2,33 +2,19 @@
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  text-align: center;
+  text-align: left;
   padding-top: 10px;
 }
-.tache-card {
-    padding: 5px;
-    margin-left: 2%;
-    margin-right: 2%;
-    width: 98%;
-    /* background-color: #90c4a6;
-    color: white; */
-}
-
-.tache-card mat-card-actions button {
+.vin-card mat-card-actions button {
   background-color: rgb(179, 84, 84);
   color: #FFF;
 }
-.img-card {
-  max-width: 50%;
-}
-
 .action-card {
   display: flex;
   justify-content: center;
   gap: 12px;
   color: white;
 }
-
 .fab {
   position: fixed;
   bottom: 24px;
@@ -37,13 +23,41 @@
   background-color: rgb(179, 84, 84);
   color: white !important;
 }
-
 @media (max-width: 600px) {
   .fab {
     bottom: 16px;
     right: 16px;
   }
 }
-.titre {
-  margin-left: 8px;
+.vin-card {
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+.vin-content {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+.photo {
+    flex: 0 0 120px;
+}
+.photo img {
+    width: 120px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: solid 1px #ddd;
+}
+.infos {
+    flex: 1;
+}
+.infos h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: rgb(179, 84, 84);
+}
+.description {
+    margin-top: 12px;
+    white-space: pre-wrap;
 }

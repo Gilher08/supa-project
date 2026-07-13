@@ -10,13 +10,13 @@
     margin-left: 2%;
     margin-right: 2%;
     width: 98%;
-    background-color: #2196f3;
-    color: white;
+    /* background-color: #2196f3;
+    color: white; */
 }
 
 .tache-card mat-card-actions button {
-  background-color: white;
-  color: #1976d2;
+  background-color: #1976d2;
+  color: #fff;
 }
 
 .action-card {
@@ -31,7 +31,7 @@
   bottom: 24px;
   right: 24px;
   z-index: 1000;
-  background-color: #ff5252 !important;
+  background-color: #1976d2 !important;
   color: white !important;
 }
 

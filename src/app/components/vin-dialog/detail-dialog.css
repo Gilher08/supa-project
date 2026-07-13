@@ -1,3 +1,7 @@
 .img-card {
     max-width: 100%;
 }
+.action-card button {
+  background-color: rgb(179, 84, 84);
+  color: #FFF;
+}

@@ -4,12 +4,10 @@
     <mat-card-title (click)="consulterTache(tache)">{{ tache.titre }}</mat-card-title>
     <mat-card-subtitle>Créé le {{ tache.created_at | date:'dd/MM/yyyy' }}</mat-card-subtitle>
     <mat-card-actions class="action-card">
-        <button mat-button (click)="modifierTache(tache)">
-        Modifier
+        <button matMiniFab (click)="modifierTache(tache)">
         <mat-icon>edit</mat-icon>
         </button>
-        <button matButton (click)="supprimerTache(tache)">
-        Supprimer
+        <button matMiniFab (click)="supprimerTache(tache)">
         <mat-icon>delete</mat-icon>
         </button>
     </mat-card-actions>

@@ -124,9 +124,6 @@ export class SupabaseService {
         {
           titre: vin.titre,
           description: vin.description,
-          fournisseur: vin.fournisseur,
-          annee: vin.annee,
-          prix: vin.prix,
           photo: vin.photo
         }
       ])
@@ -147,9 +144,6 @@ export class SupabaseService {
       .update({
         titre: vin.titre,
         description: vin.description,
-        fournisseur: vin.fournisseur,
-        annee: vin.annee,
-        prix: vin.prix,
         photo: vin.photo
       })
       .eq('id', vin.id)
